@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  llama-cpu-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5010:5010"  # Ánh xạ cổng 5010 của container với cổng 5010 của máy chủ
+    restart: always  # Tự động khởi động lại container nếu bị dừng
+    networks:
+      - llama-network  # Thêm vào network tùy chỉnh
+
+networks:
+  llama-network:
+    driver: bridge  # Sử dụng driver "bridge" cho mạng tùy chỉnh
